@@ -2,46 +2,20 @@
 import { Link, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 
-function Applications() {
-  // Read query parameter from URL
+function Applications({ applications }) {
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
 
-  // Local / component state
   const [filter, setFilter] = useState("All");
 
-  const applications = [
-    {
-      id: 101,
-      company: "Amazon",
-      role: "Software Developer Intern",
-      status: "Applied"
-    },
-    {
-      id: 102,
-      company: "Salesforce",
-      role: "Developer Intern",
-      status: "Interview"
-    },
-    {
-      id: 103,
-      company: "Microsoft",
-      role: "Data Science Intern",
-      status: "Selected"
-    }
-  ];
-
-  // Start with all applications
   let filteredApplications = applications;
 
-  // Filter using query parameter
   if (status) {
     filteredApplications = applications.filter(
       app => app.status === status
     );
   }
 
-  // Filter using component state
   if (filter !== "All") {
     filteredApplications = applications.filter(
       app => app.status === filter
