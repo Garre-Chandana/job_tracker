@@ -9,7 +9,7 @@ function ApplicationDetails() {
       id: 101,
       company: "Amazon",
       role: "Software Developer Intern",
-      status: "Applied"
+      status: "applied"
     },
     {
       id: 102,
