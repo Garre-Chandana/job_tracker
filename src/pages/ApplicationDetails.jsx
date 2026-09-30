@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-function Applications() {
+function ApplicationDetails() {
+
+  const { id } = useParams();
 
   const applications = [
     {
@@ -23,29 +25,21 @@ function Applications() {
     }
   ];
 
+  const application = applications.find(
+    app => app.id === Number(id)
+  );
+
   return (
     <div>
 
-      <h1>Applications</h1>
+      <h1>{application.company}</h1>
 
-      {applications.map((application) => (
+      <p>Role: {application.role}</p>
 
-        <div key={application.id}>
-
-          <h2>{application.company}</h2>
-
-          <p>{application.role}</p>
-
-          <Link to={`/applications/${application.id}`}>
-            View Details
-          </Link>
-
-        </div>
-
-      ))}
+      <p>Status: {application.status}</p>
 
     </div>
   );
 }
 
-export default Applications;
+export default ApplicationDetails;
