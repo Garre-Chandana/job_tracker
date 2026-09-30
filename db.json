@@ -1,0 +1,35 @@
+{
+  "applications": [
+    {
+      "id": "101",
+      "company": "Amazon",
+      "role": "Software Developer Intern",
+      "status": "Applied"
+    },
+    {
+      "id": "102",
+      "company": "Salesforce",
+      "role": "Developer Intern",
+      "status": "Interview"
+    },
+    {
+      "id": "103",
+      "company": "Microsoft",
+      "role": "Data Science Intern",
+      "status": "Selected"
+    },
+    {
+      "company": "CDS",
+      "role": "INTERN",
+      "status": "Applied",
+      "id": "w4hd7JYIbk0"
+    },
+    {
+      "company": "Google",
+      "role": "Intern",
+      "status": "Applied",
+      "id": "yUyaFY9l1fw"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
