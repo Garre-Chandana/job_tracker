@@ -1,24 +1,35 @@
-
 import { Link, useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function Applications({ applications }) {
+function Applications() {
+  const [applications, setApplications] = useState([]);
+
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
 
   const [filter, setFilter] = useState("All");
 
+  // Get applications from server
+  useEffect(() => {
+    fetch("http://localhost:5000/applications")
+      .then((response) => response.json())
+      .then((data) => setApplications(data))
+      .catch((error) => console.log(error));
+  }, []);
+
   let filteredApplications = applications;
 
+  // URL state
   if (status) {
     filteredApplications = applications.filter(
-      app => app.status === status
+      (app) => app.status === status
     );
   }
 
+  // Local state
   if (filter !== "All") {
     filteredApplications = applications.filter(
-      app => app.status === filter
+      (app) => app.status === filter
     );
   }
 
@@ -60,4 +71,3 @@ function Applications({ applications }) {
 }
 
 export default Applications;
-

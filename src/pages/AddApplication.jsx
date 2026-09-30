@@ -1,8 +1,7 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function AddApplication({ addApplication }) {
+function AddApplication() {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [status, setStatus] = useState("Applied");
@@ -13,19 +12,31 @@ function AddApplication({ addApplication }) {
     event.preventDefault();
 
     const newApplication = {
-      id: Date.now(),
       company: company,
       role: role,
       status: status
     };
 
-    addApplication(newApplication);
+    fetch("http://localhost:5000/applications", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newApplication)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Added application:", data);
 
-    setCompany("");
-    setRole("");
-    setStatus("Applied");
+        setCompany("");
+        setRole("");
+        setStatus("Applied");
 
-    navigate("/applications");
+        navigate("/applications");
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
   };
 
   return (
@@ -87,4 +98,3 @@ function AddApplication({ addApplication }) {
 }
 
 export default AddApplication;
-
